@@ -6,7 +6,7 @@ function start() {
     $("#fundoGame").append("<div id ='inimigo1' class='anima2'></div>");
     $("#fundoGame").append("<div id ='inimigo2' ></div>");
     $("#fundoGame").append("<div id ='amigo' class = 'anima3'></div>");
-    //variavel jogo 
+    //variavel jogo
     var jogo = {};
     //teclado
     var tecla = {
@@ -38,6 +38,7 @@ function start() {
         moveFundo();
         moveJogador();
         moveInimigo1();
+        moveInimigo2();
     }
 
     //moviementacao do background do jogo
@@ -73,6 +74,16 @@ function start() {
             posicaoY = parseInt(Math.random() * 334);
             $("#inimigo1").css("left", 694);
             $("#inimigo1").css("top", posicaoY);
+        }
+    }
+
+    //movimentacao inimigo 2
+    function moveInimigo2() {
+        posicaoX = parseInt($("#inimigo2").css("left"));
+        $("#inimigo2").css("left", posicaoX - 3);
+
+        if (posicaoX <= 0) {
+            $("#inimigo2").css("left", 775);
         }
     }
 }
