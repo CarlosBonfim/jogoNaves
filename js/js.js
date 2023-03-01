@@ -6,44 +6,47 @@ function start() {
     $("#fundoGame").append("<div id ='inimigo1' class='anima2'></div>");
     $("#fundoGame").append("<div id ='inimigo2' ></div>");
     $("#fundoGame").append("<div id ='amigo' class = 'anima3'></div>");
-
+    //variavel jogo 
     var jogo = {};
-
+    //teclado
     var tecla = {
         W: 87,
         S: 83,
         D: 68,
     };
-
+    //tecla recebida
     jogo.pressionou = [];
 
-    //verificar se o jogador pressionou
+    var velocidade = 5;
+    var posicaoY = parseInt(Math.random() * 334);
 
+    //verifica tecla pressionada pelo jogador
     $(document).keydown(function (e) {
         jogo.pressionou[e.which] = true;
         console.log(`apertou ${e.which}`);
     });
-
+    //verifica se o jogador soltou
     $(document).keyup(function (e) {
         jogo.pressionou[e.which] = false;
         console.log(e.which);
     });
 
-    //loop
+    //execucao do jogo atraves de um setInterval de 30
     jogo.timer = setInterval(loop, 30);
-
+    //loop do jogo, chama as funcoes do jogo
     function loop() {
-        movefundo();
-        movejogador();
+        moveFundo();
+        moveJogador();
+        moveInimigo1();
     }
 
-    // vai fazer a moviementacao do background
-    function movefundo() {
+    //moviementacao do background do jogo
+    function moveFundo() {
         esquerda = parseInt($("#fundoGame").css("background-position"));
         $("#fundoGame").css("background-position", esquerda - 1);
     }
-
-    function movejogador() {
+    //movimentacao do jogador
+    function moveJogador() {
         if (jogo.pressionou[tecla.W]) {
             var topo = parseInt($("#jogador").css("top"));
             $("#jogador").css("top", topo - 10);
@@ -58,6 +61,18 @@ function start() {
             if (topo >= 434) {
                 $("#jogador").css("top", topo - 10);
             }
+        }
+    }
+    //movimentacao do inimigo 1
+    function moveInimigo1() {
+        posicaoX = parseInt($("#inimigo1").css("left"));
+        $("#inimigo1").css("left", posicaoX - velocidade);
+        $("#inimigo1").css("top", posicaoY);
+
+        if (posicaoX <= 0) {
+            posicaoY = parseInt(Math.random() * 334);
+            $("#inimigo1").css("left", 694);
+            $("#inimigo1").css("top", posicaoY);
         }
     }
 }
