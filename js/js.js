@@ -39,6 +39,7 @@ function start() {
         moveJogador();
         moveInimigo1();
         moveInimigo2();
+        moveAmigo();
     }
 
     //moviementacao do background do jogo
@@ -84,6 +85,16 @@ function start() {
 
         if (posicaoX <= 0) {
             $("#inimigo2").css("left", 775);
+        }
+    }
+
+    //movimentacao amigo
+    function moveAmigo() {
+        posicaoX = parseInt($("#amigo").css("left"));
+        $("#amigo").css("left", posicaoX + 1);
+
+        if (posicaoX > 906) {
+            $("#amigo").css("left", 0);
         }
     }
 }
