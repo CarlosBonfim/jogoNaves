@@ -19,16 +19,17 @@ function start() {
 
     var velocidade = 5;
     var posicaoY = parseInt(Math.random() * 334);
+    var podeAtirar = true;
 
     //verifica tecla pressionada pelo jogador
     $(document).keydown(function (e) {
         jogo.pressionou[e.which] = true;
-        console.log(`apertou ${e.which}`);
+        // console.log(`apertou ${e.which}`);
     });
     //verifica se o jogador soltou
     $(document).keyup(function (e) {
         jogo.pressionou[e.which] = false;
-        console.log(e.which);
+        // console.log(e.which);
     });
 
     //execucao do jogo atraves de um setInterval de 30
@@ -64,6 +65,9 @@ function start() {
                 $("#jogador").css("top", topo - 10);
             }
         }
+        if(jogo.pressionou[tecla.D]){
+            disparo()
+        }
     }
     //movimentacao do inimigo 1
     function moveInimigo1() {
@@ -97,4 +101,31 @@ function start() {
             $("#amigo").css("left", 0);
         }
     }
+    function disparo(){
+        if(podeAtirar === true){
+            podeAtirar = false;
+            topo = parseInt($("#jogador").css("top"))
+            posicaoX = parseInt($("#jogador").css("left"));
+            tiroX = posicaoX + 190;
+            topoTiro = topo + 37;
+            $("#fundoGame").append("<div id ='disparo' ></div>");
+            $("#disparo").css("top", topoTiro)
+            $("#disparo").css("left", tiroX)
+        }
+        var tempoDisparo = window.setInterval(executaDisparo, 30);
+
+        function executaDisparo(){
+            
+            posicaoX = parseInt($("#disparo").css("left"))
+            $("#disparo").css("left", posicaoX + 10)
+
+            if(posicaoX > 900){
+                window.clearInterval(tempoDisparo)
+                tempoDisparo = null;
+                $("#disparo").remove()
+                podeAtirar = true;
+            }
+        }
+    }
+    
 }
