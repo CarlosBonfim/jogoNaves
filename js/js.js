@@ -6,6 +6,7 @@ function start() {
     $("#fundoGame").append("<div id ='inimigo1' class='anima2'></div>");
     $("#fundoGame").append("<div id ='inimigo2' ></div>");
     $("#fundoGame").append("<div id ='amigo' class = 'anima3'></div>");
+    $("#fundoGame").append("<div id='placar'></div>");
     //variavel jogo
     var jogo = {};
     //teclado
@@ -21,6 +22,10 @@ function start() {
     var posicaoY = parseInt(Math.random() * 334);
     var podeAtirar = true;
     var fimDeJogo = false;
+
+    var pontos = 0;
+    var salvos = 0;
+    var perdidos = 0;
 
     //verifica tecla pressionada pelo jogador
     $(document).keydown(function (e) {
@@ -41,6 +46,7 @@ function start() {
         moveInimigo2();
         moveAmigo();
         colisao();
+        placar();
     }
 
     //moviementacao do background do jogo
@@ -153,6 +159,7 @@ function start() {
         }
         //disparo inimigo 1
         if (colisao3.length > 0) {
+            pontos = pontos + 100;
             inimigo1X = parseInt($("#inimigo1").css("left"));
             inimigo1Y = parseInt($("#inimigo1").css("top"));
             explosao1(inimigo1X, inimigo1Y);
@@ -163,6 +170,7 @@ function start() {
         }
         //disparo inimigo 2
         if (colisao4.length > 0) {
+            pontos = pontos + 50;
             inimigo2X = parseInt($("#inimigo2").css("left"));
             inimigo2Y = parseInt($("#inimigo2").css("top"));
             $("#inimigo2").remove();
@@ -173,12 +181,14 @@ function start() {
 
         //jogador amigo
         if (colisao5.length > 0) {
+            salvos++;
             $("#amigo").remove();
             reposicionaAmigo();
         }
 
         //inimigo 2 amigo
         if (colisao6.length > 0) {
+            perdidos++;
             amigoX = parseInt($("#amigo").css("left"));
             amigoY = parseInt($("#amigo").css("top"));
             explosao3(amigoX, amigoY);
@@ -227,6 +237,10 @@ function start() {
             window.clearInterval(tempoExplosao3);
             tempoExplosao3 = null;
         }
+    }
+
+    function placar(){
+        $("#placar").html("<h2> Pontos: " + pontos + " Salvos: "+ salvos + " Perdidos: " + perdidos + "</h2>")
     }
 
     function reposicionaInimigo2() {
