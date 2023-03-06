@@ -103,7 +103,7 @@ function start() {
     }
     //disparo helicoptero jogador
     function disparo() {
-        if (podeAtirar === true) {
+        if (podeAtirar == true) {
             podeAtirar = false;
             topo = parseInt($("#jogador").css("top"));
             posicaoX = parseInt($("#jogador").css("left"));
@@ -112,8 +112,8 @@ function start() {
             $("#fundoGame").append("<div id ='disparo'></div>");
             $("#disparo").css("top", topoTiro);
             $("#disparo").css("left", tiroX);
-        }
         var tempoDisparo = window.setInterval(executaDisparo, 30);
+        }
         //realizacao do disparo
         function executaDisparo() {
             posicaoX = parseInt($("#disparo").css("left"));
