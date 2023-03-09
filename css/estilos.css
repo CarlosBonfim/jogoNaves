@@ -27,6 +27,7 @@ body {
     background-image: url(../imgs/fundo_game.jpg);
     border-color: #fff;
     border-style: solid;
+    border-radius: 5px;
 }
 
 #jogador {
@@ -74,12 +75,37 @@ body {
     margin-top: 100px;
     text-align: center;
     padding: 10px;
+    border-radius: 5px;
+    font-family: Arial;
+}
+#iniciarJogo{
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: Titulo;
+    color: #603a03;
+    padding: 2px 10px;
+}
+#iniciarJogo:hover{
+    background-color: #603a03;
+    color: #fff;
+}
+#iniciarJogo:active{
+    background-color: #c98526;
 }
 
-h3{
+#jogarNovamente{
+    border-radius: 5px;
     font-family: titulo;
     font-size: 20px;
     color: #603a03;
+    padding: 10px;
+}
+#jogarNovamente:hover{
+    background-color: #603a03;
+    color: #fff;
+}
+#jogarNovamente:active{
+    background-color: #c98526;
 }
 
 #fim{
@@ -91,6 +117,8 @@ h3{
     margin-right: auto;
     text-align: center;
     padding: 10px;
+    border-radius: 5px;
+    font-family: Arial;
 }
 
 .anima1 {

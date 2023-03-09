@@ -230,7 +230,7 @@ function start() {
         var div = $("#explosao1");
         div.css("top", inimigo1Y);
         div.css("left", inimigo1X);
-        div.animate({ width: 200, opacity: 0 }, "slow");
+        div.animate({ width: 300, opacity: 0 }, 500);
         var tempoExplosao = window.setInterval(removeExplosao, 1000);
         function removeExplosao() {
             div.remove();
@@ -246,7 +246,7 @@ function start() {
         div2.css("background-image", "url(imgs/explosao.png)");
         div2.css("top", inimigo2Y);
         div2.css("left", inimigo2X);
-        div2.animate({ width: 200, opacity: 0 }, "slow");
+        div2.animate({ width: 200, opacity: 0 }, 500);
         var tempoExplosao2 = window.setInterval(removeExplosao2, 1000);
         function removeExplosao2() {
             div2.remove();
@@ -334,7 +334,7 @@ function start() {
             "<h1>Fim de Jogo</h1><p>Sua pontuação foi: " +
                 pontos +
                 "</p>" +
-                "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>"
+                "<button  id='jogarNovamente' onClick=reiniciaJogo()>Jogar Novamente</button>"
         );
     }
 }
